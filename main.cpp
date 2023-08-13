@@ -1,4 +1,4 @@
-#include "ProcessManager.h"
+п»ї#include "ProcessManager.h"
 
 int main()
 {
@@ -10,19 +10,19 @@ int main()
 	std::wstring testPath;
 	std::wcin >> testPath;
 
-	//преобразуем пути для управляющей и тестовой программы к типу LPWSTR (wchar_t*)
+	//РїСЂРµРѕР±СЂР°Р·СѓРµРј РїСѓС‚Рё РґР»СЏ СѓРїСЂР°РІР»СЏСЋС‰РµР№ Рё С‚РµСЃС‚РѕРІРѕР№ РїСЂРѕРіСЂР°РјРјС‹ Рє С‚РёРїСѓ LPWSTR (wchar_t*)
 	LPWSTR controlProgramPath = const_cast<LPWSTR>(controlPath.data());
 	LPWSTR testProgramPath    = const_cast<LPWSTR>(testPath.data());
 
-	//создаем два экземпляра класса и передаем в конструктор соответствующие пути
-	ProcessManager controlProgram{ controlProgramPath };
-	ProcessManager testProgram	 { testProgramPath };
+	//СЃРѕР·РґР°РµРј РґРІР° СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР° Рё РїРµСЂРµРґР°РµРј РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ РїСѓС‚Рё
+	ProcessManager controlProgram { controlProgramPath };
+	ProcessManager testProgram	  { testProgramPath };
 
-	//запускам управляющую и тестовую программу, создаем для них отдельные потоки и процессы
+	//Р·Р°РїСѓСЃРєР°Рј СѓРїСЂР°РІР»СЏСЋС‰СѓСЋ Рё С‚РµСЃС‚РѕРІСѓСЋ РїСЂРѕРіСЂР°РјРјСѓ, СЃРѕР·РґР°РµРј РґР»СЏ РЅРёС… РѕС‚РґРµР»СЊРЅС‹Рµ РїРѕС‚РѕРєРё Рё РїСЂРѕС†РµСЃСЃС‹
 	controlProgram.createThread();
 	testProgram.createThread();
 
-	//завершаем оба процесса
+	//Р·Р°РІРµСЂС€Р°РµРј РѕР±Р° РїСЂРѕС†РµСЃСЃР°
 	controlProgram.exitProcess();
 	testProgram.exitProcess();
 
